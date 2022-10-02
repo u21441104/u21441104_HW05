@@ -1,0 +1,41 @@
+﻿@model List<u21441104_HW05.ViewModels.BorrowsVM>
+@using u21441104_HW05.ViewModels
+@{
+    ViewBag.Title = "Books";
+}
+<h2> Name </h2>
+
+@using (Html.BeginForm("ViewStudent", "Home", FormMethod.Post))
+{
+    <div>
+        <h4 style="float:left; font-weight:bolder">
+            # Borrows
+        </h4>
+        <input type="submit" style="float:right; background-color:Highlight; color:white; height:35px; border:none; border-radius:5px" value="View Students" />
+    </div>
+}
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>Taken Date</th>
+        <th>Brought Date</th>
+        <th>Borrowed By</th>
+    </tr>
+    @try
+    {
+        foreach (BorrowsVM bookModel in Model)
+        {
+            <tr>
+                <td>@bookModel.ID</td>
+                <td>@bookModel.TAKEN_DATE</td>
+                <td>@bookModel.BROUGHT_DATE</td>
+                <td>@bookModel.BORROWED_BY</td>
+            </tr>
+        }
+    }
+    catch (Exception)
+    {
+
+        throw;
+    }
+</table>

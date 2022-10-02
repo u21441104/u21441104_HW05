@@ -1,0 +1,68 @@
+﻿@model List<u21441104_HW05.ViewModels.StudentsVM>
+@using u21441104_HW05.ViewModels
+@{
+    ViewBag.Title = "View Students";
+}
+
+
+<style>
+    .Binput {
+        border: none;
+        border-radius: 5px;
+        color: white;
+        height: 35px;
+        width: 150px;
+    }
+
+    .Ainput {
+        border: none;
+        border-radius: 5px;
+        color: white;
+        height: 35px;
+        width: 110px;
+    }
+</style>
+
+<h2>Students</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <input type="text" name="txtBookName" style="height:35px; float:left" placeholder="Search Student Name" />
+        </div>
+        <div class="col-sm-3">
+            @Html.DropDownList("exercise", new List<SelectListItem>
+        {
+            new SelectListItem { Text = "Select a Class", Value = "1"},
+        }, new { @class = "form-control", @type = "text" })
+        </div>
+        <div class="col-sm-3">
+            <input type="button" name="btnSearch" value="Search" style="background-color:forestgreen" class="Binput" />
+        </div>
+        <div class="col-sm-3">
+            <input type="button" name="btnClear" value="Clear" style="background-color:orangered" class="Binput"/>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Class</th>
+        <th>Points</th>
+        <th>Borrow Book</th>
+    </tr>
+    @foreach (StudentsVM studentModel in Model)
+    {
+        <tr>
+            <td>@studentModel.ID</td>
+            <td>@studentModel.NAME</td>
+            <td>@studentModel.SURNAME</td>
+            <td>@studentModel.CLASS</td>
+            <td>@studentModel.POINTS</td>
+            <td><input type="submit" value="Borrow Book"</td>
+        </tr>
+    }
+</table>

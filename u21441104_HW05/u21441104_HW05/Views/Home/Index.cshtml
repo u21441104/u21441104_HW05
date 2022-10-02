@@ -1,0 +1,86 @@
+﻿@model List<u21441104_HW05.ViewModels.BooksVM>
+@using u21441104_HW05.ViewModels
+@{
+    ViewBag.Title = "Books";
+}
+
+<style>
+    .Binput {
+        border: none;
+        border-radius: 5px;
+        color: white;
+        height: 35px;
+        width: 110px;
+    }
+    .Ainput {
+        border: none;
+        border-radius: 5px;
+        color: white;
+        height: 35px;
+        width: 110px;
+    }
+</style>
+
+<h2> Books </h2>
+<h1>@ViewBag.Test</h1>
+
+<form method="post" name="btnSearchBook">
+    @using (Html.BeginForm("btnSearchBook", "Home", FormMethod.Post))
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <input type="text" name="txtBookName" style="height:35px; float:left" placeholder="Search Book Name" />
+                </div>
+                <div class="col-sm-2">
+                    <select name="slctType" id="slctType" style="height:35px; width: 110px">
+                        <option value="Guide">Guide</option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <select name="slctAuthor" id="slctAuthor" style="height: 35px;width: 110px">
+                        <option value="Guide">Guide</option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+
+                    <input type="submit" name="btnSearch" value="Search" style="background-color:forestgreen" class="Binput" />
+                    
+                </div>
+                <div class="col-sm-2">
+                    <input type="button" name="btnClear" value="Clear" style="background-color:orangered" class="Binput" />
+                </div>
+            </div>
+        </div>
+    }
+    </form>
+
+@using (Html.BeginForm("ViewBook", "Home", FormMethod.Post))
+{
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Type</th>
+            <th>Page Count</th>
+            <th>Points</th>
+            <th>Status</th>
+            <th> </th>
+        </tr>
+        @foreach (BooksVM bookModel in Model)
+        {
+            <tr>
+                <td>@bookModel.ID</td>
+                <td>@bookModel.NAME</td>
+                <td>@bookModel.AUTHOR</td>
+                <td>@bookModel.TYPE</td>
+                <td>@bookModel.PAGE_COUNT</td>
+                <td>@bookModel.POINTS</td>
+                <td>OUT</td>
+                <td><input type="submit" value="View" name="btnView" /></td>
+            </tr>
+        }
+
+    </table>
+}
